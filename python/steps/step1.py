@@ -1,13 +1,8 @@
 ###############################################################################
-# Final Game
+# Step 1
 ###############################################################################
-# This is the finished game
-# Instructions:
-# 	Left or right to move the piece.
-#	Space-bar to rotate
-#	Down to drop the piece
-#	Fill all the blocks in a line to clear the line.  
-#	Clear multiple lines at once for more points!
+# This is a blank slate.  The program comes up and has a blank screen and does nothing.
+# We will build on it from here.
 ###############################################################################
 
 import pygame

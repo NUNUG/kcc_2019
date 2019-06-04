@@ -62,6 +62,13 @@ while True:
 
 	# If it's time to move the piece down, check to see if it will be set.
 	if (last_descent_ticks + hover_duration - dropping_speed <= pygame.time.get_ticks()):
+
+		# To determine if the piece will set, we look to see if there are any well bricks
+		# directly underneath any piece bricks.  We do that by merging the two matrices
+		# and adding the values of the cells at the piece's next location to the same cells in the well.
+		# If any cells have a value of 2 then both matrices have a cell in the same position.
+		# That's a collision.  Therefore, we can't move the piece down to the next position.
+		
 		# If the piece hits the bottom of the well, it sets.
 		will_set = g.piece_will_set(this_piece, well_matrix)
 		
