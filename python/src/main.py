@@ -1,7 +1,13 @@
 ###############################################################################
-# Step 11
+# Final Game
 ###############################################################################
-# Some silly background music.
+# This is the finished game
+# Instructions:
+# 	Left or right to move the piece.
+#	Space-bar to rotate
+#	Down to drop the piece
+#	Fill all the blocks in a line to clear the line.  
+#	Clear multiple lines at once for more points!
 ###############################################################################
 
 import pygame
@@ -50,14 +56,6 @@ hover_duration = int(1000 / difficulty)
 while True:
 	pygame.time.Clock().tick(1000/30)
 
-	# Definitions for key presses.  (These buttons must be tapped repeatedly.)
-	# # Not needed?
-	# btn_left = False
-	# btn_right = False
-	# btn_space = False
-	# btn_down = False
-
-	
 	for event in pygame.event.get():
 		# Pay attention if the user clicks the X to quit.
 		if event.type == pygame.QUIT:
@@ -67,7 +65,6 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if (event.key == K_ESCAPE):
 				sys.exit()
-		#Step ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- 
 			if (event.key == K_LEFT):
 				this_piece.move_left(well_matrix)
 			if (event.key == K_RIGHT):
@@ -82,9 +79,6 @@ while True:
 	else:
 		dropping_speed = 0
 
-
-	#Step ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- 
-	#functions.impose_matrix(this_piece.matrix, well_matrix, this_piece.position)
 	# If it's time to move the piece down, check to see if it will be set.
 	if (last_descent_ticks + hover_duration - dropping_speed <= pygame.time.get_ticks()):
 		
@@ -93,10 +87,8 @@ while True:
 		# and adding the values of the cells at the piece's next location to the same cells in the well.
 		# If any cells have a value of 2 then both matrices have a cell in the same position.
 		# That's a collision.  Therefore, we can't move the piece down to the next position.
-		
-		
+
 		# If the piece hits the bottom of the well, it sets.
-		#wellwidth, wellheight = functions.well_dimensions()
 		will_set = g.piece_will_set(this_piece, well_matrix)
 		
 		if (will_set):
@@ -126,17 +118,17 @@ while True:
 			# Start the next piece.
 			this_piece = g.new_piece()
 		else:
-			# Make sure you indented this line by one more tab!
 			this_piece.move_down()
 
 		last_descent_ticks = pygame.time.get_ticks()
-
 
 	# Draw the background
 	screen.blit(img_background_scaled, (0, 0))
 
 	# Draw the well
 	g.draw_well(screen, screen_size)
+
+	# Draw the well grid (if turned on)
 	g.draw_well_grid(screen, screen_size)
 	
 	# Draw the bricks in the well matrix
@@ -147,7 +139,7 @@ while True:
 
 	# Draw the score box
 	g.draw_scoreboard(screen, screen_size, score)
-	
+
 	# Put the scene on the monitor.
 	pygame.display.update()
 

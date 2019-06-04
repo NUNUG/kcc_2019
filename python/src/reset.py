@@ -14,6 +14,6 @@ except:
 if (i < 0) or (i > step_count):
 	print(desiredStep + " is not a valid step number.  Valid steps numers are 1 through "+str(step_count)+".")
 else:
-	src = "../steps/main-step" + str(i) + ".py"
+	src = "../steps/step" + str(i) + ".py"
 	dest = "./main.py"
 	copyfile(src, dest)
