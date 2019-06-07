@@ -22,7 +22,7 @@ function Remove-PathElement {
 	write-output $PartsToRemove
 
 	$Reconstruction = $FilteredParts -join ";"
-	# This stupid fuckin thing doesn't change the current path AT ALL.  But it's supposed to make it persist.  We'll see.
+	# This stupid thing doesn't change the current path AT ALL.  But it's supposed to make it persist.  We'll see.
 	[System.Environment]::SetEnvironmentVariable("PATH", $Reconstruction, "Machine")
 	# To make it take immediate effect, we do this.
 	$env:Path = $Reconstruction
